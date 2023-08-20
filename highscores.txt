@@ -1,3 +1,9 @@
 Name
-testquiz.txt
+name of quiz
 100
+crisper
+samplequiz
+100.0
+hjkjhhjklhjkh
+testquiz
+57.14285714285714

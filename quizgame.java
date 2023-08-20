@@ -42,6 +42,7 @@ public class quizgame{
 				strChoice = quizSelect(con);
 				// Gameplay
 				game(strName, strChoice, con);
+				con.clear();
 				// method(strChoice
 				
 				// Return to Main Menu
@@ -198,7 +199,10 @@ public class quizgame{
 	public static void game(String strName, String strChoice, Console con){
 		con.clear();
 		// Variables
+		double dblPercent = 0;
 		int intQuestions = 0;
+		double dblCorrect = 0;
+		char chrCont = 'a';
 		String strQ; // Questions
 		String strA[] = new String[4]; // Answers
 		String strC; // Correct answer
@@ -227,20 +231,86 @@ public class quizgame{
 				strQuiz[intCount][intColumn] = txtQuiz.readLine();
 				System.out.println("strQuiz["+intCount+"]["+intColumn+"] = "+(strQuiz[intCount][intColumn]));
 			}
-		}
+		} 
+		txtQuiz.close();
 		// Loop to Play All Questions
-		for(intCount = 1; intCount <= intQuestions; intCount++){
+		for(intCount = 0; intCount < intQuestions; intCount++){
+			//con.clear();
 			// Display Updated HUD
-			con.println((strName+"                                 ").substring(0, 33)+(strName+"                                 ").substring(0, 33));
-			//con.println("0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
-			// Display Question with Answers
-			// Indicate Correct/Incorrect
+			con.println((strName+"                                 ").substring(0, 33)+(strQuizName+"                                 ").substring(0, 33) +dblPercent+"%");
+			// Display Question
+			con.println("\n\n");
+			con.println(strQuiz[intCount][0]);
+			for(intColumn = 1; intColumn <= 4; intColumn++){				
+				// Display Answers
+				con.println(intColumn+": "+strQuiz[intCount][intColumn]);
+			}
+			// User Selects Answer
+			con.println("\n\n");
+			con.println("Enter your answer as a number from 1-4: ");
+			int intResponse = con.readInt();
+			System.out.println("User's Answer: "+intResponse);
+			// Indicate Correct/Incorrect Answer
+			con.println("Correct Answer: "+strQuiz[intCount][5]);
+			System.out.println("Correct Answer: "+strQuiz[intCount][5]);
+			// Check if User's Answer Matches and Add to Count
+			if((strQuiz[intCount][intResponse]).equals(strQuiz[intCount][5])){
+				con.println("Your answer is correct");
+				dblCorrect = dblCorrect + 1;
+			}else{
+				con.println("Your answer is incorrect");
+			}
+			System.out.println("Number of correct questions: "+dblCorrect);
+			// HUD Score Calculation
+			dblPercent = (dblCorrect/intQuestions) * 100;
+			System.out.println("% of correct questions: "+dblPercent);
+			// Clear
+			con.print("Press any key to continue");
+			chrCont = con.getChar();
+			con.clear();
 		}
+		// Display Final Score
+		con.println("Final Score: "+dblPercent);
+		con.print("Press any key to continue");
+		chrCont = con.getChar();
+		// Add Score to High Score Page
+		TextOutputFile txtScore = new TextOutputFile("highscores.txt", true);
+		txtScore.println(strName);
+		txtScore.println(strChoice);
+		txtScore.println(dblPercent);
+		txtScore.close();
 	}
+	
+	
 	
 	// High Score
 	public static void scores(Console con){
 		con.print("High score page");
+		// Variables
+		int intEntries = 0;
+		int intCount;
+		int intColumn;
+		String strRead;
+		// Open Text File
+		TextInputFile txtScores = new TextInputFile("highscores.txt");
+		// Count Entries
+		while(txtScores.eof() == false){
+			for(intCount = 0; intCount < 3; intCount++){
+				strRead = txtScores.readLine();
+			}
+			intEntries = intEntries + 1;
+			System.out.println("Counted entries: "+intEntries);
+		}
+		System.out.println("Final count: "+intEntries);
+		// Load Unsorted Scores into Array 
+		String strScores[][] = new String[intEntries][3];
+		for(intCount = 0; intCount < intEntries; intCount++){
+			for(intColumn = 0; intColumn < 3; intColumn++){
+				
+			}
+		}
+		// Sort Scores
+		// Display Scores on Screen
 	}
 	
 	// Create a Quiz
