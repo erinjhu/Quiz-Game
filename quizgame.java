@@ -73,7 +73,7 @@ public class quizgame{
 			
 			// 3.1 High Scores
 			while(dblPage == 3.1){
-				scores(con);
+				loadScores(con);
 				// Return to Main Menu
 				con.print("Press 'm' to return to the menu");
 				while(chrMenu != 'm'){
@@ -284,13 +284,18 @@ public class quizgame{
 	
 	
 	// High Score
-	public static void scores(Console con){
+	public static void loadScores(Console con){
 		con.print("High score page");
-		// Variables
+		// Variables - Load Array
 		int intEntries = 0;
 		int intCount;
 		int intColumn;
 		String strRead;
+		// Variables - Sort
+		double dblBelow;
+		double dblCurrent;
+		int intCount2;
+		String strTemp;
 		// Open Text File
 		TextInputFile txtScores = new TextInputFile("highscores.txt");
 		// Count Entries
@@ -302,15 +307,44 @@ public class quizgame{
 			System.out.println("Counted entries: "+intEntries);
 		}
 		System.out.println("Final count: "+intEntries);
+		txtScores.close();
 		// Load Unsorted Scores into Array 
+		txtScores = new TextInputFile("highscores.txt");
 		String strScores[][] = new String[intEntries][3];
 		for(intCount = 0; intCount < intEntries; intCount++){
 			for(intColumn = 0; intColumn < 3; intColumn++){
-				
+				strScores[intCount][intColumn] = txtScores.readLine();
+				System.out.println("strScores["+intCount+"]["+intColumn+"] = "+strScores[intCount][intColumn]);
 			}
 		}
 		// Sort Scores
+		for(intCount2 = 0; intCount2 < intEntries - 1; intCount2++){
+			for(intCount = 0; intCount < intEntries - intCount2 - 1; intCount++){
+				dblBelow = Double.parseDouble(strScores[intCount + 1][2]);
+				dblCurrent = Double.parseDouble(strScores[intCount + 1][2]);
+			/*	if(intBelow > intCurrent){
+					// Name
+					strTemp = strScores[intCount + 1][0];
+					strScores[intCount + 1][0] = strScores[intCount][0];
+					strScores[intCount][0] = strTemp;
+					// Quiz
+					strTemp = strScores[intCount + 1][1];
+					strScores[intCount + 1][1] = strScores[intCount][1];
+					strScores[intCount][1] = strTemp;
+					// Scores
+					strTemp = strScores[intCount + 1][2];
+					strScores[intCount + 1][2] = strScores[intCount][2];
+					strScores[intCount][2] = strTemp;
+				} */
+			}
+		}
 		// Display Scores on Screen
+		for(intCount = 0; intCount < intEntries; intCount++){
+			for(intColumn = 0; intColumn < 3; intColumn++){
+				strScores[intCount][intColumn] = txtScores.readLine();
+				System.out.println("strScores["+intCount+"]["+intColumn+"] = "+strScores[intCount][intColumn]);
+			}
+		}
 	}
 	
 	// Create a Quiz

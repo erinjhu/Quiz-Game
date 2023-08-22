@@ -7,3 +7,6 @@ samplequiz
 hjkjhhjklhjkh
 testquiz
 57.14285714285714
+name
+samplequiz
+100.0
