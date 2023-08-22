@@ -281,11 +281,9 @@ public class quizgame{
 		txtScore.close();
 	}
 	
-	
-	
 	// High Score
 	public static void loadScores(Console con){
-		con.print("High score page");
+		con.println("High score page");
 		// Variables - Load Array
 		int intEntries = 0;
 		int intCount;
@@ -311,6 +309,7 @@ public class quizgame{
 		// Load Unsorted Scores into Array 
 		txtScores = new TextInputFile("highscores.txt");
 		String strScores[][] = new String[intEntries][3];
+		System.out.println("Unsorted Scores");
 		for(intCount = 0; intCount < intEntries; intCount++){
 			for(intColumn = 0; intColumn < 3; intColumn++){
 				strScores[intCount][intColumn] = txtScores.readLine();
@@ -318,15 +317,20 @@ public class quizgame{
 			}
 		}
 		// Sort Scores
+		int intA;
 		for(intCount2 = 0; intCount2 < intEntries - 1; intCount2++){
 			for(intCount = 0; intCount < intEntries - intCount2 - 1; intCount++){
 				dblBelow = Double.parseDouble(strScores[intCount + 1][2]);
-				dblCurrent = Double.parseDouble(strScores[intCount + 1][2]);
-			/*	if(intBelow > intCurrent){
+				System.out.println("dblBelow: "+dblBelow);
+				dblCurrent = Double.parseDouble(strScores[intCount][2]);
+				System.out.println("dblCurrent: "+dblCurrent);
+				if(dblBelow > dblCurrent){
+					System.out.println("Sorted");
 					// Name
 					strTemp = strScores[intCount + 1][0];
 					strScores[intCount + 1][0] = strScores[intCount][0];
 					strScores[intCount][0] = strTemp;
+					System.out.println();
 					// Quiz
 					strTemp = strScores[intCount + 1][1];
 					strScores[intCount + 1][1] = strScores[intCount][1];
@@ -335,26 +339,70 @@ public class quizgame{
 					strTemp = strScores[intCount + 1][2];
 					strScores[intCount + 1][2] = strScores[intCount][2];
 					strScores[intCount][2] = strTemp;
-				} */
+				}else{
+					System.out.println("Already in order");
+				}
 			}
 		}
-		// Display Scores on Screen
+		// Check for Sorted Entries
+		System.out.println("Sorted Scores");
 		for(intCount = 0; intCount < intEntries; intCount++){
 			for(intColumn = 0; intColumn < 3; intColumn++){
-				strScores[intCount][intColumn] = txtScores.readLine();
 				System.out.println("strScores["+intCount+"]["+intColumn+"] = "+strScores[intCount][intColumn]);
 			}
 		}
+		// Display Sorted Entries to Screen
+		con.println(("Name                                 ").substring(0, 33)+("Quiz Played                                 ").substring(0, 33) +("Score\n"));
+		for(intCount = 0; intCount < intEntries; intCount++){
+			con.println((strScores[intCount][0]+"                                 ").substring(0, 33)+(strScores[intCount][1]+"                                 ").substring(0, 33) +(int)(Double.parseDouble(strScores[intCount][2]))+"%");
+		}
+		con.println("");
 	}
 	
 	// Create a Quiz
 	public static void create(Console con){
-		con.print("Create quiz");
+		boolean blnCont = true;
+		int intNum = 1;
+		String strIn;
+		int intA;
+		char chrCont;
+		// Input Quiz Name
+		con.print("Enter the quiz name: ");
+		String strName;
+		strName = con.readLine();
+		// Text File
+		TextOutputFile txtNew = new TextOutputFile(strName+".txt");
+		// Enter Questions and Answers
+		while(blnCont == true){
+			con.println("Enter question "+intNum+":");
+			strIn = con.readLine();
+			txtNew.println(strIn);
+			for(intA = 1; intA <= 4; intA++){
+				con.println("Enter answer "+intA+": ");
+				strIn = con.readLine();
+				txtNew.println(strIn);
+			} 
+			con.println("Enter the (full) correct answer: ");
+			strIn = con.readLine();
+			txtNew.println(strIn);
+			intNum++;
+			// Ask User to Continue
+			con.println("Add another question?\n 'y' or 'n'");
+			chrCont = con.getChar();
+			if(chrCont == 'n'){
+				blnCont = false;
+			}else if(chrCont == 'y'){
+				con.clear();
+			}
+		}
+		txtNew.close();
+		TextOutputFile txtMaster = new TextOutputFile("quizzes.txt", true);
+		txtMaster.println(strName);
 	}
 	
 	// Help
 	public static void help(Console con){
-		con.print("Help");
+		con.print("How to Play");
 	}
 }
 

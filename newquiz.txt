@@ -1,0 +1,12 @@
+This is the first testing question?
+yes
+no
+maybe
+don't know
+yes
+This is the second testing question?
+yes
+no
+maybe
+don't know
+yes

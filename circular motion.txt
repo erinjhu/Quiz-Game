@@ -1,0 +1,31 @@
+Why is there an inward acceleration for uniform circular motion?
+Since a = delta(v)/t, the resultant vector's direction will be inwards
+There is only outward acceleration if the reference frame is an accelerated reference frame
+To ensure the motion is uniform, acceleration must be towards the center of the circular path
+Centripetal acceleration is perpendicular to the non-tangential velocity
+Since a = delta(v)/t, the resultant vector's direction will be inwards
+Which direction will the cork lean in when the cork accelerometer (corks suspended in a glass jar of water)?
+In the direction of the acceleration
+Opposite to the acceleration
+In the direction of the velocity
+Opposite to the velocity
+In the direction of the acceleration
+What is the best way to describe the velocity vector?
+Constant magnitude and tangential direction
+Constant magnitude and central direction
+Non-constant magnitude and tangential direction
+Constant magnitude and central direction
+Constant magnitude and tangential direction
+You are holding a ball tied to a 3 cm string, and you start twirling it in a horizontal circle. The initial speed is 0 m/s. After it accelerates for 2 seconds, you are twirling it at a constant speed of 10 m/s. Calculate the magnitude of acceleration for the uniform circular motion.
+5 m/s^2
+55.55 m/s^2
+33.33 m/s^2
+3333.33 m/s^2
+3333.33 m/s^2
+If you double the radius, what will happen to the acceleration and why?
+
+Double; radius is directly proportional to acceleration
+Double; radius is indirectly proportional to acceleration
+Halve; radius is directly proportional to acceleration
+Halve; radius is indirectly proportional to acceleration
+Halve; radius is indirectly proportional to acceleration
