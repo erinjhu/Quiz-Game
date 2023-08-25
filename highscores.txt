@@ -22,3 +22,9 @@ samplequiz
 name
 circular motion
 80.0
+name
+circular motion
+100.0
+name
+circular motion
+60.0

@@ -199,7 +199,7 @@ public class quizgame{
 			}
 			con.print("Enter your choice: ");
 			strChoice = con.readLine();
-			blnTest = choiceCheck(intQCount, strChoice);
+			blnTest = choiceCheck(0, intQCount, strChoice);
 			System.out.println(blnTest);
 			if(blnTest == false){
 				con.print("Enter a valid choice.");
@@ -212,16 +212,17 @@ public class quizgame{
 		return strSelect[intChoice]; 
 	}
 	
-	public static boolean choiceCheck(int intQCount, String strInput){
+	// Play - Quiz Selection Verification
+	public static boolean choiceCheck(int intType, int intQCount, String strInput){
 		//int intQ[] = new int[intQCount];
 		boolean blnValid = false;
 		String strQ[] = new String[intQCount];
 		int intA;
-		for(intA = 0; intA < intQCount; intA++){
+		for(intA = intType; intA < intQCount; intA++){
 			strQ[intA] = Integer.toString(intA);
 			System.out.println(strQ[intA]);
 		}
-		for(intA = 0; intA < intQCount; intA++){
+		for(intA = intType; intA < intQCount; intA++){
 			if((strQ[intA]).equals(strInput)){
 				blnValid = true;
 			}
@@ -280,32 +281,52 @@ public class quizgame{
 				con.println(intColumn+": "+strQuiz[intCount][intColumn]);
 			}
 			// User Selects Answer
-			int intResponse = 0;
+			/*int intResponse = 0;
 			con.println("\n\n");
 			con.println("Enter your answer as a number from 1-4: ");
-			
-			while(intResponse != 1 || intResponse != 2 || intResponse != 3 || intResponse != 4){
-				
-			}
-			
 			intResponse = con.readInt();
-			System.out.println("User's Answer: "+intResponse);
-			// Indicate Correct/Incorrect Answer
-			con.println("Correct Answer: "+strQuiz[intCount][5]);
+			System.out.println("User's Answer: "+intResponse); */
+			
+			// Check if Answer is Valid
+			boolean blnTest = false;
+			String strInput = "a";
+			while(blnTest == false){
+				// HUD and Questions
+				con.clear();
+				con.println((strName+"                                 ").substring(0, 33)+(strQuizName+"                                 ").substring(0, 33) +dblPercent+"%");
+				con.println("\n"+strQuiz[intCount][0]);
+				for(intColumn = 1; intColumn <= 4; intColumn++){				
+					// Display Answers
+					con.println(intColumn+": "+strQuiz[intCount][intColumn]);
+				}
+				// User Input
+				con.print("\nEnter your response as a number from 1-4: ");
+				strInput = con.readLine();
+				blnTest = choiceCheck(1, 5, strInput);
+				System.out.println(blnTest);
+				if(blnTest == false){
+					con.println("\nEnter a valid choice.");
+				}
+				con.println("\nPress any key to continue");
+				chrCont = con.getChar();
+			}
+			int intResponse = Integer.parseInt(strInput);
+			// Indicate Correct Answer
+			con.println("\nCorrect Answer: "+strQuiz[intCount][5]);
 			System.out.println("Correct Answer: "+strQuiz[intCount][5]);
 			// Check if User's Answer Matches and Add to Count
 			if((strQuiz[intCount][intResponse]).equals(strQuiz[intCount][5])){
-				con.println("Your answer is correct");
+				con.println("\nYour answer is correct");
 				dblCorrect = dblCorrect + 1;
 			}else{
-				con.println("Your answer is incorrect");
+				con.println("\nYour answer is incorrect");
 			}
 			System.out.println("Number of correct questions: "+dblCorrect);
 			// HUD Score Calculation
 			dblPercent = (dblCorrect/intQuestions) * 100;
 			System.out.println("% of correct questions: "+dblPercent);
 			// Clear
-			con.print("Press any key to continue");
+			con.print("\nPress any key to continue");
 			chrCont = con.getChar();
 			con.clear();
 		}
