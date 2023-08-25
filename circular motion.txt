@@ -23,7 +23,6 @@ You are holding a ball tied to a 3 cm string, and you start twirling it in a hor
 3333.33 m/s^2
 3333.33 m/s^2
 If you double the radius, what will happen to the acceleration and why?
-
 Double; radius is directly proportional to acceleration
 Double; radius is indirectly proportional to acceleration
 Halve; radius is directly proportional to acceleration

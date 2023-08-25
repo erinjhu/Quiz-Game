@@ -54,22 +54,6 @@ public class quizgame{
 					}
 				}
 			}
-			 
-			// 2.2 Enter Name
-			//while(dblPage == 2.2){
-			//}
-			
-			// 2.3 Select Quiz
-			while(dblPage == 2.3){
-			}
-			
-			// 2.4 Play Quiz
-			while(dblPage == 2.4){
-			}
-			
-			// 2.5 Stats and Option to Return to Menu
-			while(dblPage == 2.5){
-			}
 			
 			// 3.1 High Scores
 			while(dblPage == 3.1){
@@ -156,6 +140,7 @@ public class quizgame{
 	
 	// Play - Name Input
 	public static String name(Console con){
+		con.sleep(50);
 		con.clear();
 		con.print("Enter your name: ");
 		String strName = con.readLine();
@@ -169,6 +154,7 @@ public class quizgame{
 		int intCount;
 		int intQCount = 0;
 		char chrChoice = ' ';
+		String strChoice;
 		// Count Quizzes
 		TextInputFile txtMaster = new TextInputFile("quizzes.txt");
 		while(txtMaster.eof() == false){
@@ -189,10 +175,58 @@ public class quizgame{
 		}
 		txtMaster.close();
 		// Select Quiz
-		int intChoice = con.readInt();
+		// Old Version:
+		/*
+		int intChoice = -1;
+		while(intQCount < intChoice || intQCount > intChoice){
+			con.clear();
+			con.println("Quiz Options:");
+			for(intCount = 0; intCount < intQCount; intCount++){
+				con.println(intCount+": "+strSelect[intCount]);
+			}
+			intChoice = con.readInt();
+		}	
 		System.out.println("intChoice = "+intChoice); 
-		System.out.println("strSelect[intChoice] = "+strSelect[intChoice]);
-		return strSelect[intChoice];
+		System.out.println("strSelect[intChoice] = "+strSelect[intChoice]); */
+		boolean blnTest = false;
+		char chrCont;
+		strChoice = "a";
+		while(blnTest == false){
+			con.clear();
+			con.println("Quiz Options:");
+			for(intCount = 0; intCount < intQCount; intCount++){
+				con.println(intCount+": "+strSelect[intCount]);
+			}
+			con.print("Enter your choice: ");
+			strChoice = con.readLine();
+			blnTest = choiceCheck(intQCount, strChoice);
+			System.out.println(blnTest);
+			if(blnTest == false){
+				con.print("Enter a valid choice.");
+			}
+			con.print("Press any key to continue");
+			chrCont = con.getChar();
+			con.clear();
+		}
+		int intChoice = Integer.parseInt(strChoice);
+		return strSelect[intChoice]; 
+	}
+	
+	public static boolean choiceCheck(int intQCount, String strInput){
+		//int intQ[] = new int[intQCount];
+		boolean blnValid = false;
+		String strQ[] = new String[intQCount];
+		int intA;
+		for(intA = 0; intA < intQCount; intA++){
+			strQ[intA] = Integer.toString(intA);
+			System.out.println(strQ[intA]);
+		}
+		for(intA = 0; intA < intQCount; intA++){
+			if((strQ[intA]).equals(strInput)){
+				blnValid = true;
+			}
+		}
+		return blnValid;
 	}
 	
 	// Play - Gameplay
@@ -246,9 +280,15 @@ public class quizgame{
 				con.println(intColumn+": "+strQuiz[intCount][intColumn]);
 			}
 			// User Selects Answer
+			int intResponse = 0;
 			con.println("\n\n");
 			con.println("Enter your answer as a number from 1-4: ");
-			int intResponse = con.readInt();
+			
+			while(intResponse != 1 || intResponse != 2 || intResponse != 3 || intResponse != 4){
+				
+			}
+			
+			intResponse = con.readInt();
 			System.out.println("User's Answer: "+intResponse);
 			// Indicate Correct/Incorrect Answer
 			con.println("Correct Answer: "+strQuiz[intCount][5]);
@@ -398,6 +438,7 @@ public class quizgame{
 		txtNew.close();
 		TextOutputFile txtMaster = new TextOutputFile("quizzes.txt", true);
 		txtMaster.println(strName);
+		txtMaster.close();
 	}
 	
 	// Help
