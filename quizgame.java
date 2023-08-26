@@ -5,6 +5,8 @@ import java.awt.Color;
 public class quizgame{
 	public static void main(String[] args){
 		
+		System.out.println("testing");
+		
 		// Variables
 		
 		// Console
@@ -30,8 +32,38 @@ public class quizgame{
 				con.println("Main menu page");
 				menuDisplay(con, fntTitle, fntMenuButtons);
 				//dblPage = menuSelect(con);
-				menuLogic(con);
+				int intX = con.currentMouseX();
+				int intY = con.currentMouseY();
+				int intClick;
+				dblPage = 1.1;
+				while(dblPage == 1.1){
+				// Play
+					System.out.println("testing 2");
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					while(intX >= 300 && intX <= 980 && intY >= 340 && intY <= 400) {
+						System.out.println("testing 4");
+						intX = con.currentMouseX();
+						intY = con.currentMouseY();
+						intClick = con.currentMouseButton();
+						con.setDrawColor(new Color(168, 218, 230));
+						con.drawRect(300,340,680,60);
+						System.out.println("x: "+intX);
+						System.out.println("y: "+intY);
+						System.out.println("Mouse: "+intClick);
+						System.out.println("dblPage = "+dblPage);
+						if(con.currentMouseButton() == 1){
+							dblPage = 2.1;
+						}
+					}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,340,680,60);
 				con.clear();
+				}
 			}
 			
 			// 2.1 Play Quiz 
@@ -122,6 +154,7 @@ public class quizgame{
 	
 	// Menu Graphics
 	public static void menuDisplay(Console con, Font fntTitle, Font fntMenuButtons){
+		System.out.println("testing 3");
 		con.clear();
 		//con.println("Select an option:\n(p)lay\nHigh (s)cores\n(c)reate quiz\n(h)elp\n(q)uit");
 		con.setDrawFont(fntTitle);
@@ -143,15 +176,21 @@ public class quizgame{
 	
 	// Menu Logic
 	public static void menuLogic(Console con){
-		int intX;
-		int intY;
+		int intX = con.currentMouseX();
+		int intY = con.currentMouseY();
 		int intClick;
 		double dblPage = 1.1;
 		while(dblPage == 1.1){
 			// Play
-			while((con.currentMouseX()) >= 300 && (con.currentMouseX()) <= 980){
+			while(intX >= 300 && intX <= 980 && intY >= 340 && intY <= 400) {
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
 				con.setDrawColor(new Color(168, 218, 230));
 				con.drawRect(300,340,680,60);
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
 				if(con.currentMouseButton() == 1){
 					dblPage = 2.1;
 				}
