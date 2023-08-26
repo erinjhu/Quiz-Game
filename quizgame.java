@@ -1,4 +1,6 @@
 import arc.*;
+import java.awt.Font;
+import java.awt.Color;
 
 public class quizgame{
 	public static void main(String[] args){
@@ -17,7 +19,8 @@ public class quizgame{
 		String strChoice;
 		// Gameplay
 		// Text
-		
+		Font fntMenuButtons = con.loadFont("lemon-milk.ttf",20);
+		Font fntTitle = con.loadFont("lemon-milk.ttf",100);
 		
 		while(dblPage > 0){
 		
@@ -25,16 +28,20 @@ public class quizgame{
 			while(dblPage == 1.1){
 				chrMenu = 'i';
 				con.println("Main menu page");
-				menuDisplay(con);
-				dblPage = menuSelect(con);
+				menuDisplay(con, fntTitle, fntMenuButtons);
+				//dblPage = menuSelect(con);
+				menuLogic(con);
 				con.clear();
 			}
 			
 			// 2.1 Play Quiz 
 			while(dblPage == 2.1){
+				con.repaint();
 				con.clear();
-				con.println("play page");
 				// Enter Name
+				con.setDrawColor(Color.BLACK);
+				con.fillRect(0,0,1280,720);
+				con.repaint();
 				strName = name(con);
 				con.clear();
 				// Quiz Selection
@@ -114,9 +121,48 @@ public class quizgame{
 	// METHODS
 	
 	// Menu Graphics
-	public static void menuDisplay(Console con){
+	public static void menuDisplay(Console con, Font fntTitle, Font fntMenuButtons){
 		con.clear();
-		con.println("Select an option:\n(p)lay\nHigh (s)cores\n(c)reate quiz\n(h)elp\n(q)uit");
+		//con.println("Select an option:\n(p)lay\nHigh (s)cores\n(c)reate quiz\n(h)elp\n(q)uit");
+		con.setDrawFont(fntTitle);
+		con.drawString("TEMPORARY NAME",100,50);
+		//drawRect(int intX, int intY, int intWidth, int intHeight)
+		con.setDrawColor(Color.WHITE);
+		con.setDrawFont(fntMenuButtons);
+		con.drawString("Quit",350,635);
+		con.drawRect(300,620,680,60);
+		con.drawString("Help",350,565);
+		con.drawRect(300,550,680,60);
+		con.drawString("Create Quiz",350,495);
+		con.drawRect(300,480,680,60);
+		con.drawString("High Scores",350,425);
+		con.drawRect(300,410,680,60);
+		con.drawString("Play",350,355);
+		con.drawRect(300,340,680,60);
+	}
+	
+	// Menu Logic
+	public static void menuLogic(Console con){
+		int intX;
+		int intY;
+		int intClick;
+		double dblPage = 1.1;
+		while(dblPage == 1.1){
+			// Play
+			while((con.currentMouseX()) >= 300 && (con.currentMouseX()) <= 980){
+				con.setDrawColor(new Color(168, 218, 230));
+				con.drawRect(300,340,680,60);
+				if(con.currentMouseButton() == 1){
+					dblPage = 2.1;
+				}
+			}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,340,680,60);
+			// High Scores
+			// Create Quiz
+			// Help
+			// Quit
+		}
 	}
 	
 	// Select Menu Option
