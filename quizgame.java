@@ -27,43 +27,133 @@ public class quizgame{
 		while(dblPage > 0){
 		
 			// 1.1 Main Menu
+			chrMenu = 'i';
+			con.println("Main menu page");
+			menuDisplay(con, fntTitle, fntMenuButtons);
+			//dblPage = menuSelect(con);
+			int intX = con.currentMouseX();
+			int intY = con.currentMouseY();
+			int intClick;
+			dblPage = 1.1;
 			while(dblPage == 1.1){
-				chrMenu = 'i';
-				con.println("Main menu page");
-				menuDisplay(con, fntTitle, fntMenuButtons);
-				//dblPage = menuSelect(con);
-				int intX = con.currentMouseX();
-				int intY = con.currentMouseY();
-				int intClick;
-				dblPage = 1.1;
-				while(dblPage == 1.1){
+				System.out.println("Menu");
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
 				// Play
-					System.out.println("testing 2");
+				while(intX >= 300 && intX <= 980 && intY >= 340 && intY <= 400) {
 					intX = con.currentMouseX();
 					intY = con.currentMouseY();
 					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,340,680,60);
+					System.out.println("Play");
 					System.out.println("x: "+intX);
 					System.out.println("y: "+intY);
 					System.out.println("Mouse: "+intClick);
-					while(intX >= 300 && intX <= 980 && intY >= 340 && intY <= 400) {
-						System.out.println("testing 4");
-						intX = con.currentMouseX();
-						intY = con.currentMouseY();
-						intClick = con.currentMouseButton();
-						con.setDrawColor(new Color(168, 218, 230));
-						con.drawRect(300,340,680,60);
-						System.out.println("x: "+intX);
-						System.out.println("y: "+intY);
-						System.out.println("Mouse: "+intClick);
-						System.out.println("dblPage = "+dblPage);
-						if(con.currentMouseButton() == 1){
-							dblPage = 2.1;
-						}
+					if(con.currentMouseButton() == 1){
+						dblPage = 2.1;
 					}
-			con.setDrawColor(Color.WHITE);
-			con.drawRect(300,340,680,60);
-				con.clear();
 				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,340,680,60);
+				// High Scores
+				while(intX >= 300 && intX <= 980 && intY >= 410 && intY <= 470) {
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,410,680,60);
+					System.out.println("Scores");
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					if(con.currentMouseButton() == 1){
+						dblPage = 3.1;
+					}
+				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,410,680,60);
+				// Create Quiz
+				while(intX >= 300 && intX <= 980 && intY >= 480 && intY <= 540) {
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,480,680,60);
+					System.out.println("Create");
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					if(con.currentMouseButton() == 1){
+						dblPage = 4.1;
+					}
+				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,480,680,60);
+				// Help
+				while(intX >= 300 && intX <= 980 && intY >= 550 && intY <= 610) {
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,550,680,60);
+					System.out.println("Help");
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					if(con.currentMouseButton() == 1){
+						dblPage = 5.1;
+					}
+				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,550,680,60);
+				// Quit
+				while(intX >= 300 && intX <= 980 && intY >= 620 && intY <= 680) {
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,620,680,60);
+					System.out.println("Quit");
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					if(con.currentMouseButton() == 1){
+						dblPage = 6.1;
+					}
+				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,620,680,60);
+			// Play
+				/*System.out.println("testing 2");
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
+				while(intX >= 300 && intX <= 980 && intY >= 340 && intY <= 400) {
+					System.out.println("testing 4");
+					intX = con.currentMouseX();
+					intY = con.currentMouseY();
+					intClick = con.currentMouseButton();
+					con.setDrawColor(new Color(168, 218, 230));
+					con.drawRect(300,340,680,60);
+					System.out.println("x: "+intX);
+					System.out.println("y: "+intY);
+					System.out.println("Mouse: "+intClick);
+					System.out.println("dblPage = "+dblPage);
+					
+					if(con.currentMouseButton() == 1){
+						dblPage = 2.1;
+					}
+				}
+				con.setDrawColor(Color.WHITE);
+				con.drawRect(300,340,680,60);
+				con.clear(); */
+			
 			}
 			
 			// 2.1 Play Quiz 
@@ -96,6 +186,8 @@ public class quizgame{
 			
 			// 3.1 High Scores
 			while(dblPage == 3.1){
+				con.setDrawColor(Color.BLACK);
+				con.fillRect(0,0,1280,720);
 				loadScores(con);
 				// Return to Main Menu
 				con.print("Press 'm' to return to the menu");
@@ -109,6 +201,8 @@ public class quizgame{
 			
 			// 4.1 Create a Quiz
 			while(dblPage == 4.1){
+				con.setDrawColor(Color.BLACK);
+				con.fillRect(0,0,1280,720);
 				create(con);
 				// Return to Main Menu
 				con.print("Press 'm' to return to the menu");
@@ -122,6 +216,8 @@ public class quizgame{
 			
 			// 5.1 Help
 			while(dblPage == 5.1){
+				con.setDrawColor(Color.BLACK);
+				con.fillRect(0,0,1280,720);
 				help(con);
 				// Return to Main Menu
 				con.print("Press 'm' to return to the menu");
@@ -176,6 +272,7 @@ public class quizgame{
 	
 	// Menu Logic
 	public static void menuLogic(Console con){
+		System.out.println("Menu logic method");
 		int intX = con.currentMouseX();
 		int intY = con.currentMouseY();
 		int intClick;
@@ -188,6 +285,7 @@ public class quizgame{
 				intClick = con.currentMouseButton();
 				con.setDrawColor(new Color(168, 218, 230));
 				con.drawRect(300,340,680,60);
+				System.out.println("Play");
 				System.out.println("x: "+intX);
 				System.out.println("y: "+intY);
 				System.out.println("Mouse: "+intClick);
@@ -198,9 +296,73 @@ public class quizgame{
 			con.setDrawColor(Color.WHITE);
 			con.drawRect(300,340,680,60);
 			// High Scores
+			while(intX >= 300 && intX <= 980 && intY >= 410 && intY <= 470) {
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
+				con.setDrawColor(new Color(168, 218, 230));
+				con.drawRect(300,410,680,60);
+				System.out.println("Scores");
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
+				if(con.currentMouseButton() == 1){
+					dblPage = 2.1;
+				}
+			}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,410,680,60);
 			// Create Quiz
+			while(intX >= 300 && intX <= 980 && intY >= 480 && intY <= 540) {
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
+				con.setDrawColor(new Color(168, 218, 230));
+				con.drawRect(300,480,680,60);
+				System.out.println("Create");
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
+				if(con.currentMouseButton() == 1){
+					dblPage = 2.1;
+				}
+			}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,480,680,60);
 			// Help
+			while(intX >= 300 && intX <= 980 && intY >= 550 && intY <= 610) {
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
+				con.setDrawColor(new Color(168, 218, 230));
+				con.drawRect(300,550,680,60);
+				System.out.println("Help");
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
+				if(con.currentMouseButton() == 1){
+					dblPage = 2.1;
+				}
+			}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,550,680,60);
 			// Quit
+			while(intX >= 300 && intX <= 980 && intY >= 620 && intY <= 680) {
+				intX = con.currentMouseX();
+				intY = con.currentMouseY();
+				intClick = con.currentMouseButton();
+				con.setDrawColor(new Color(168, 218, 230));
+				con.drawRect(300,620,680,60);
+				System.out.println("Quit");
+				System.out.println("x: "+intX);
+				System.out.println("y: "+intY);
+				System.out.println("Mouse: "+intClick);
+				if(con.currentMouseButton() == 1){
+					dblPage = 2.1;
+				}
+			}
+			con.setDrawColor(Color.WHITE);
+			con.drawRect(300,620,680,60);
 		}
 	}
 	
